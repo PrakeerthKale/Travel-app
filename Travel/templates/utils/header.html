@@ -1,0 +1,178 @@
+<header class="cs_site_header cs_style_1 cs_fs_18 cs_sticky_header">
+      <div class="cs_main_header">
+        <div class="cs_main_header_in">
+          <div class="cs_main_header_left">
+            <a class="cs_site_branding" href="/home">
+              <img src="/static/images/logo.svg" alt="Logo">
+            </a>
+          </div>
+          <div class="cs_main_header_center">
+            <div class="cs_nav cs_medium cs_primary_font">
+              <ul class="cs_nav_list">
+                <li class="menu-item-has-children">
+                  <a href="{% url 'home' %}">Home</a>
+                  <ul>
+                    <li><a href="{% url 'home' %}">Home v1</a></li>
+                  </ul>
+                </li>
+                <li><a href="{% url 'about' %}">About Us</a></li>
+                <li class="menu-item-has-children">
+                  <a href="{% url 'available_tours' %}">Tour Packages</a>
+                  <ul>
+                    <li><a href="{% url 'available_tours' %}">Tour Packages</a></li>
+                  </ul>
+                </li>
+                <li class="menu-item-has-children">
+                  <a href="{% url 'bus_list' %}">Bus Booking</a>
+                  <ul>
+                    <li><a href="{% url 'bus_list' %}">Bus Booking</a></li>
+                  </ul>
+                </li>
+                <!--<li class="menu-item-has-children">
+                  <a href="{% url 'login_view' %}">Login</a>
+                  <ul>
+                    <li><a href="{% url 'login_view' %}">Login</a></li>
+                    <li><a href="{% url 'register_view' %}">Register</a></li>
+                  </ul>
+                </li>-->
+                </li>
+              <li><a href="{% url 'contact' %}">Contact Us</a></li> 
+              </ul>
+               </div>
+          </div>
+            <div class="cs_main_header_right">
+            <div class="cs_header_toolbox">
+              <div>
+                <button class="cs_search_btn cs_fs_24" type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+              </div>
+              <!-- Right Toolbox: Search + Login/Profile -->
+      <div class="cs_main_header_right">
+        <div class="cs_header_toolbox" style="display: flex; align-items: center; gap: 15px; position: relative;">
+  
+
+          <!-- Conditional Signin/Profile Dropdown -->
+          {% if user.is_authenticated %}
+            <div class="cs_profile_menu">
+              <button class="cs_profile_btn" onclick="toggleDropdown()">
+                <i class="fa-solid fa-user"></i>
+              </button>
+              <div class="cs_dropdown" id="profileDropdown">
+                <a href="{% url 'profile_view'%}">My Profile</a>
+                <a href="#">Settings</a>
+                <a href="{% url 'logout_view' %}">Logout</a>
+              </div>
+            </div>
+          {% else %}
+            <a href="{% url 'login_view' %}" class="cs_signin_btn">
+              <i class="fa-solid fa-user" style="margin-right: 1px;"></i>
+            </a>
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<!-- Styling -->
+<style>
+  .cs_signin_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  color: black;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.cs_signin_btn:hover {
+  background-color:rgb(31, 146, 241);
+  box-shadow: 0 4px 12px hsla(0, 17.90%, 89.00%, 0.97);
+}
+
+.cs_signin_btn i {
+  font-size: 30px;
+  align-items: center;
+  justify-content: center;
+}
+
+  .cs_profile_menu {
+    position: relative;
+  }
+
+ .cs_profile_btn {
+  background-color: #ffffff;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 30px;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.cs_profile_btn:hover {
+  background-color: #f5f5f5;
+  border-color: #ccc;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+  .cs_dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 45px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    min-width: 150px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .cs_dropdown a {
+    display: block;
+    padding: 10px 15px;
+    color: black;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .cs_dropdown a:hover {
+    background-color: #f5f5f5;
+  }
+</style>
+
+<!-- Script -->
+<script>
+  function toggleDropdown() {
+    const dropdown = document.getElementById("profileDropdown");
+    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+  }
+
+  document.addEventListener("click", function (e) {
+    const dropdown = document.getElementById("profileDropdown");
+    const button = document.querySelector(".cs_profile_btn");
+
+    if (dropdown && button && !button.contains(e.target) && !dropdown.contains(e.target)) {
+      dropdown.style.display = "none";
+    }
+  });
+</script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
